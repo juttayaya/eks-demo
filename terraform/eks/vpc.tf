@@ -4,6 +4,7 @@ resource "aws_vpc" "eks-demo-vpc" {
   tags = "${
     map(
      "Name", "eks-demo-vpc",
+     "kubernetes.io/cluster/${var.eks-cluster-name}", "shared",
      "EKS-Cluster", "${var.eks-cluster-name}"
     )
   }"
@@ -19,7 +20,8 @@ resource "aws_subnet" "eks-demo-subnet" {
   tags = "${
     map(
      "Name", "eks-demo-subnet",
-     "EKS-Cluster", "${var.eks-cluster-name}"
+     "EKS-Cluster", "${var.eks-cluster-name}",
+     "kubernetes.io/cluster/${var.eks-cluster-name}", "shared",
     )
   }"
 }
@@ -30,6 +32,7 @@ resource "aws_internet_gateway" "eks-demo-gateway" {
   tags = "${
     map(
      "Name", "eks-demo-gateway",
+     "kubernetes.io/cluster/${var.eks-cluster-name}", "shared",
      "EKS-Cluster", "${var.eks-cluster-name}"
     )
   }"
@@ -46,6 +49,7 @@ resource "aws_route_table" "eks-demo-routetable" {
   tags = "${
     map(
      "Name", "eks-demo-routetable",
+     "kubernetes.io/cluster/${var.eks-cluster-name}", "shared",
      "EKS-Cluster", "${var.eks-cluster-name}"
     )
   }"

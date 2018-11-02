@@ -54,6 +54,7 @@ resource "aws_security_group" "eks-demo-node-security-group" {
   tags = "${
     map(
      "Name", "eks-demo-node-security-group",
+     "kubernetes.io/cluster/${var.eks-cluster-name}", "owned",
      "EKS-Cluster", "${var.eks-cluster-name}"
     )
   }"
@@ -133,6 +134,12 @@ resource "aws_autoscaling_group" "eks-demo-asg" {
   tag {
     key                 = "EKS-Cluster"
     value               = "${var.eks-cluster-name}"
+    propagate_at_launch = true
+  }
+
+  tag {
+    key                 = "kubernetes.io/cluster/${var.eks-cluster-name}"
+    value               = "owned"
     propagate_at_launch = true
   }
 }
