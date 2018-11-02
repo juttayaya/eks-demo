@@ -4,6 +4,7 @@ terraform {
     region = "us-east-1"
     key = "eks-demo/tf-infra/terraform.tfstate"
     encrypt = true
+    dynamodb_table = "tflock-eks"
   }
 }
 
