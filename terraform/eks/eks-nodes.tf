@@ -118,7 +118,7 @@ resource "aws_launch_configuration" "eks-demo-launch-config" {
 }
 
 resource "aws_autoscaling_group" "eks-demo-asg" {
-  desired_capacity     = 3
+  desired_capacity     = 2
   launch_configuration = "${aws_launch_configuration.eks-demo-launch-config.id}"
   max_size             = 3
   min_size             = 1

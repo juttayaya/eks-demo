@@ -1,13 +1,3 @@
-terraform {
-  backend "s3" {
-    bucket = "tfstate-s3-eks"
-    region = "us-east-1"
-    key = "eks-demo/tf-infra/terraform.tfstate"
-    encrypt = true
-    dynamodb_table = "tflock-eks"
-  }
-}
-
 provider "aws" {
   region = "us-east-1"
 }
